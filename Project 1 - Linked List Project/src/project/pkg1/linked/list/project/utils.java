@@ -9,10 +9,13 @@ package project.pkg1.linked.list.project;
  *
  * @author Programador
  */
-public class Producto 
+public class utils 
 {
-    String referencia;
-    String descripcion;
-    int cantidad;
-    double precio;  
+    public static boolean isSubstring(String subs, String word)
+    {
+        return word.contains(subs);
+    }
+    
+    
+    
 }

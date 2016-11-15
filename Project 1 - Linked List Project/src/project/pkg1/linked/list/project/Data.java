@@ -9,10 +9,7 @@ package project.pkg1.linked.list.project;
  *
  * @author Programador
  */
-public class Producto 
+public class Data 
 {
-    String referencia;
-    String descripcion;
-    int cantidad;
-    double precio;  
+    public static Lista list = new Lista();
 }

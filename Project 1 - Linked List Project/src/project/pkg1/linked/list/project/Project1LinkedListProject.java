@@ -23,6 +23,10 @@ public class Project1LinkedListProject
     /**
      * @param args the command line arguments
      */
+    public boolean isSubstring(String subs, String word)
+    {
+        return word.contains(subs);
+    }
     public static void main(String[] args) 
     {
         // generate a list with 10 random numbers
@@ -37,6 +41,15 @@ public class Project1LinkedListProject
         list.imprimirLista();
         */
         
-        Files.append_file("prueba.txt", "adios");
+        //Files.append_file("prueba.txt", "adios");
+        
+        String str1 = "pan";
+        String str2 = "pan";
+        
+        if(str2.contains(str1))
+        {
+            System.out.println("Exito");
+        }
+         
     }   
 }

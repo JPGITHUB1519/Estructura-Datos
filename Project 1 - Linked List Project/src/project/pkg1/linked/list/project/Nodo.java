@@ -1,7 +1,7 @@
 package project.pkg1.linked.list.project;
 public class Nodo
 {
-    Object value;
+    Producto value;
     Nodo link;
 
     public Nodo()
@@ -10,13 +10,13 @@ public class Nodo
             this.link = null;
     }
 
-    public Nodo(Object value, Nodo node)
+    public Nodo(Producto value, Nodo node)
     {
             this.value = value;
             this.link = node;
     }
 
-    public Nodo(Object value)
+    public Nodo(Producto value)
     {
             this.value = value;
             this.link = null;
@@ -34,7 +34,7 @@ public class Nodo
     }
 
     // setters
-    public void setValue(Object value)
+    public void setValue(Producto value)
     {
             this.value = value;
     }

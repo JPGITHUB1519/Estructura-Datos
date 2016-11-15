@@ -11,6 +11,7 @@ public class LinkedList
 
 	public static void main(String [] args)
 	{
+		// Testing Purpose
 		// generate a list with 10 random numbers
 		int rand_number;
 		Lista list = new Lista();

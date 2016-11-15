@@ -29,7 +29,7 @@ public class Lista
     }
 
     // Insert to a new node to the list and mark this as the first
-    public void insertarCabeza(Object value)
+    public void insertarCabeza(Producto value)
     {
         Nodo nuevo = new Nodo();
         nuevo.setValue(value); 
@@ -41,7 +41,7 @@ public class Lista
         size++;
     }
 
-    public void insertarCola(Object value)
+    public void insertarCola(Producto value)
     {
         Nodo ultimo = this.getCola();
         Nodo nuevo = new Nodo();
@@ -74,9 +74,10 @@ public class Lista
         }
     }
 
-    public Nodo buscarPorValor(Object value)
+    public Nodo buscarPorValor(Producto value)
     {
-        Nodo n = new Nodo(first);
+        Nodo n = new Nodo();
+        n.link = first;
         boolean encontrado = false;
         while(true)
         {

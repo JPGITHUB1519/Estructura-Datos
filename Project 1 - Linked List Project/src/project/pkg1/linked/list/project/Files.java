@@ -38,6 +38,35 @@ public class Files
         }
         return array;
     }
+    
+    public static ArrayList<String> readfile_by_line_arraylist(File archivo)
+    {
+        ArrayList<String> array = new ArrayList<>();
+        FileReader fr = null;
+        BufferedReader br = null;
+        try
+        {
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+            // reading file by line
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                if (line != "")
+                {
+                    array.add(line);
+                }	
+            }	
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return array;
+    }
+    
+    
 
     public static void readfile_by_line_array(String filename, int [] array)
     {
@@ -108,7 +137,7 @@ public class Files
             ioe.printStackTrace();
         }
     }
-
+   
     public static void appendArray(String archivo, int [] data)
     {
         try
