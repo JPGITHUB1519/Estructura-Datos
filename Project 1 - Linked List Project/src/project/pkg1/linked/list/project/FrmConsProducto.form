@@ -43,9 +43,11 @@
               <Component id="cmbopcion" min="-2" pref="97" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtbuscar" min="-2" pref="267" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton2" min="-2" pref="106" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButton4" min="-2" pref="106" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,16 +56,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbopcion" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtbuscar" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jButton2" min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmbopcion" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="txtbuscar" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="jButton4" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="470" max="-2" attributes="0"/>
               <EmptySpace pref="94" max="32767" attributes="0"/>
           </Group>
@@ -81,7 +82,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Salvar"/>
+        <Property name="text" type="java.lang.String" value="Consultar"/>
         <Property name="name" type="java.lang.String" value="btnsalvar" noResource="true"/>
       </Properties>
       <Events>
@@ -159,6 +160,15 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar Por : "/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Borrar"/>
+        <Property name="name" type="java.lang.String" value="btnsalvar" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

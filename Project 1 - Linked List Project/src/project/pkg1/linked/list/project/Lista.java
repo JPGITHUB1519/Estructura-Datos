@@ -109,7 +109,7 @@ public class Lista
         }
     }
     
-    public void eliminarNodo(Object data)
+    public void eliminarNodoByReferencia(String data)
     {
         Nodo actual, anterior;
         boolean encontrado;
@@ -119,7 +119,7 @@ public class Lista
         // buscar nodo y el nodo anterior
         while((actual != null) && (!encontrado))
         {
-            encontrado = (actual.value == data);
+            encontrado = (actual.value.referencia == data);
             if(!encontrado)
             {
                 anterior = actual;
@@ -139,7 +139,39 @@ public class Lista
                 anterior.link = actual.link;
             }
             actual = null;
+        }    
+    }
+    
+    public void eliminarNodoByDescripcion(String data)
+    {
+        Nodo actual, anterior;
+        boolean encontrado;
+        actual = this.first;
+        anterior = null;
+        encontrado = false;
+        // buscar nodo y el nodo anterior
+        while((actual != null) && (!encontrado))
+        {
+            encontrado = (actual.value.descripcion == data);
+            if(!encontrado)
+            {
+                anterior = actual;
+                actual = actual.link; 
+            }
         }
-        
+        // enlace del nodo anterior con el siguiente
+        if(actual != null)
+        {
+            // si es el primero, asignarselo al proximo
+            if(actual == this.first)
+            {
+                first = actual.link;
+            }
+            else
+            {
+                anterior.link = actual.link;
+            }
+            actual = null;
+        }    
     }
 }

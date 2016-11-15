@@ -37,6 +37,7 @@ public class FrmConsProducto extends javax.swing.JFrame {
         txtbuscar = new javax.swing.JTextField();
         cmbopcion = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -48,7 +49,7 @@ public class FrmConsProducto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Consulta de Producto");
 
-        jButton2.setText("Salvar");
+        jButton2.setText("Consultar");
         jButton2.setName("btnsalvar"); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +75,14 @@ public class FrmConsProducto extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Buscar Por : ");
 
+        jButton4.setText("Borrar");
+        jButton4.setName("btnsalvar"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,23 +102,25 @@ public class FrmConsProducto extends javax.swing.JFrame {
                 .addComponent(cmbopcion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbopcion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbopcion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(94, Short.MAX_VALUE))
         );
@@ -123,6 +134,31 @@ public class FrmConsProducto extends javax.swing.JFrame {
        for(int i = 0; i < filas; i++)
        {
            model.removeRow(0);
+       }
+    }
+    
+    public static void fillTable(DefaultTableModel model)
+    {
+        Nodo node = new Nodo();
+       node = Data.list.getCabeza();
+       Producto aux_product = new Producto();
+       // empty first rows
+       FrmConsProducto.empty_first_rows(model);
+       //JOptionPane.showMessageDialog(null, node.value.descripcion);
+       while(true)
+       {
+           if(node != null)
+           {
+               aux_product = node.value;
+               Object[] row = { aux_product.referencia, aux_product.descripcion, aux_product.cantidad, aux_product.precio };
+               model.addRow(row);
+               //JOptionPane.showMessageDialog(null, node.value.descripcion);
+               node = node.link;
+           }
+           else
+           {
+               break;
+           }
        }
     }
     
@@ -192,6 +228,74 @@ public class FrmConsProducto extends javax.swing.JFrame {
            }
        }
     }
+    
+    public static void DeleteProductsByReferencia(String subs, DefaultTableModel model)
+    {
+       //eliminarNodoByReferencia
+       //deleteAllRows(model);
+       Nodo node = new Nodo();
+       node = Data.list.getCabeza();
+       Producto aux_product = new Producto();
+       // empty first rows
+       //FrmConsProducto.empty_first_rows(model);
+       //JOptionPane.showMessageDialog(null, node.value.descripcion);
+       while(true)
+       {
+           if(node != null)
+           {
+               aux_product = node.value;
+               // LLENAR SI CUMPLE EL PATRON
+               if(utils.isSubstring(subs, aux_product.referencia))
+               {
+                   Data.list.eliminarNodoByReferencia(aux_product.referencia);
+                   //Object[] row = { aux_product.referencia, aux_product.descripcion, aux_product.cantidad, aux_product.precio };
+                   //model.addRow(row);
+                   //JOptionPane.showMessageDialog(null, node.value.descripcion);
+               } 
+               node = node.link;
+           }
+           else
+           {
+               break;
+           }
+       }
+       fillTable(model);
+    }
+    
+    public static void DeleteProductsByDescripcion(String subs, DefaultTableModel model)
+    {
+       //eliminarNodoByReferencia
+       //deleteAllRows(model);
+       Nodo node = new Nodo();
+       node = Data.list.getCabeza();
+       Producto aux_product = new Producto();
+       // empty first rows
+       //FrmConsProducto.empty_first_rows(model);
+       //JOptionPane.showMessageDialog(null, node.value.descripcion);
+       while(true)
+       {
+           if(node != null)
+           {
+               aux_product = node.value;
+               // LLENAR SI CUMPLE EL PATRON
+               if(utils.isSubstring(subs, aux_product.descripcion))
+               {
+                   Data.list.eliminarNodoByDescripcion(aux_product.descripcion);
+                   //Object[] row = { aux_product.referencia, aux_product.descripcion, aux_product.cantidad, aux_product.precio };
+                   //model.addRow(row);
+                   //JOptionPane.showMessageDialog(null, node.value.descripcion);
+               } 
+               node = node.link;
+           }
+           else
+           {
+               break;
+           }
+       }
+       fillTable(model);
+    }
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String opcion = cmbopcion.getSelectedItem().toString();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -209,30 +313,27 @@ public class FrmConsProducto extends javax.swing.JFrame {
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, "Hola Mundo");
        // ctrl + alt + pgdown / page up
-       Nodo node = new Nodo();
-       node = Data.list.getCabeza();
-       Producto aux_product = new Producto();
-       DefaultTableModel model = (DefaultTableModel) table.getModel();
-       // empty first rows
-       FrmConsProducto.empty_first_rows(model);
-       //JOptionPane.showMessageDialog(null, node.value.descripcion);
-       while(true)
-       {
-           if(node != null)
-           {
-               aux_product = node.value;
-               Object[] row = { aux_product.referencia, aux_product.descripcion, aux_product.cantidad, aux_product.precio };
-               model.addRow(row);
-               //JOptionPane.showMessageDialog(null, node.value.descripcion);
-               node = node.link;
-           }
-           else
-           {
-               break;
-           }
-       }
+       
            //dgvdata.add(new object[]{ Data.list.
+       DefaultTableModel model = (DefaultTableModel) table.getModel();
+       fillTable(model);
     }//GEN-LAST:event_formWindowActivated
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+       String opcion = cmbopcion.getSelectedItem().toString();
+       DefaultTableModel model = (DefaultTableModel) table.getModel();
+       String sub = txtbuscar.getText();
+       if(opcion == "Referencia")
+       {
+           DeleteProductsByReferencia(sub, model);
+       }
+       else
+       {
+           DeleteProductsByDescripcion(sub, model);
+       }
+       
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +373,7 @@ public class FrmConsProducto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbopcion;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
