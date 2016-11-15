@@ -186,11 +186,32 @@ public class FrmMantProducto extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
            //JOptionPane.showMessageDialog(null, "Hola Mundo");
            Producto p = new Producto();
-           p.referencia = txtreferencia.getText();
-           p.descripcion = txtdescripcion.getText();
-           p.cantidad = Integer.parseInt(txtcantidad.getText());
-           p.precio = Double.parseDouble(txtprecio.getText());
-           Data.list.insertarCabeza(p);
+           
+           // verificar si existe referencia
+           if(Data.list.exitsReferencia(txtreferencia.getText()) == true)
+           {
+               System.out.println("Exito");
+               JOptionPane.showMessageDialog(null, "Esta referencia ya Existe", "Product System",
+               JOptionPane.ERROR_MESSAGE); 
+               return;
+            }
+           else
+           {
+                p.referencia = txtreferencia.getText();
+                p.descripcion = txtdescripcion.getText();
+                p.cantidad = Integer.parseInt(txtcantidad.getText());
+                p.precio = Double.parseDouble(txtprecio.getText());
+                Data.list.insertarCabeza(p);
+                JOptionPane.showMessageDialog(null, "Se insertó el producto", "Product System",
+                JOptionPane.INFORMATION_MESSAGE);
+                //clean
+                txtreferencia.setText("");
+                txtdescripcion.setText("");
+                txtcantidad.setText("");
+                txtprecio.setText("");
+                txtreferencia.requestFocus();
+           }
+           
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

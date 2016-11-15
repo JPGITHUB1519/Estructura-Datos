@@ -174,4 +174,23 @@ public class Lista
             actual = null;
         }    
     }
+    
+    public boolean exitsReferencia(String referencia)
+    {
+        Nodo n = new Nodo();
+        n = first;
+        while(true)
+        {
+            if(n != null)
+            {
+                if(n.value.referencia.equals(referencia))
+                    return true;
+            }
+            else
+            {
+                return false;
+            }
+            n = n.getLink();
+        }
+    }
 }
