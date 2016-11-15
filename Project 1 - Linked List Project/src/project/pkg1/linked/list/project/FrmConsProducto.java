@@ -70,7 +70,7 @@ public class FrmConsProducto extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
-        cmbopcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Descripcion", "Referencia", " " }));
+        cmbopcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Descripcion", "Referencia" }));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Buscar Por : ");
